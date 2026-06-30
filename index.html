@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chainsaw Man Blog | O Devorador de Demônios</title>
+    <style>
+        /* IMPORTANDO FONTES IRADAS DO GOOGLE FONTS */
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&display=swap');
+
+        /* CONFIGURAÇÕES GERAIS / PALETA DE CORES "LARANJA DOIDÃO" */
+        :root {
+            --back-dark: #0a0a0c;
+            --chainsaw-orange: #ff4500;
+            --neon-orange: #ff6600;
+            --blood-red: #8b0000;
+            --text-light: #f5f5f5;
+            --accent-gray: #1a1a1f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--back-dark);
+            color: var(--text-light);
+            font-family: 'Roboto Condensed', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--chainsaw-orange);
+            color: #000;
+        }
+
+        /* TOPO / HEADER */
+        header {
+            background: linear-gradient(180deg, rgba(255, 69, 0, 0.2) 0%, rgba(10, 10, 12, 0) 100%);
+            border-bottom: 4px solid var(--chainsaw-orange);
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 4rem;
+            color: var(--chainsaw-orange);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 0px var(--blood-red), 0 0 15px rgba(255, 102, 0, 0.6);
+            transform: rotate(-1.5deg);
+            display: inline-block;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #bbb;
+        }
+
+        /* MENU DE NAVEGAÇÃO */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--chainsaw-orange);
+            border-color: var(--chainsaw-orange);
+            background: rgba(255, 69, 0, 0.1);
+            box-shadow: 0 0 10px var(--chainsaw-orange);
+        }
+
+        /* LAYOUT PRINCIPAL */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* POSTS DO BLOG */
+        .main-content article {
+            background-color: var(--accent-gray);
+            border-left: 6px solid var(--chainsaw-orange);
+            padding: 35px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main-content article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(255, 69, 0, 0.2);
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: var(--neon-orange);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .main-content h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTILO DAS IMAGENS */
+        .post-img {
+            width: 100%;
+            height: 380px;
+            background-color: #25252b;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid var(--chainsaw-orange);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.1);
+        }
+
+        .post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .post-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .main-content p {
+            color: #dddddd;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-content ul {
+            margin-left: 20px;
+            margin-bottom: 25px;
+            color: #ccc;
+        }
+
+        .main-content li {
+            margin-bottom: 8px;
+        }
+
+        /* GALERIA DE FOTOS EXTRA */
+        .galeria-titulo {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            color: var(--chainsaw-orange);
+            margin: 50px 0 20px 0;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--blood-red);
+            padding-bottom: 10px;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .galeria-item {
+            height: 160px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .galeria-item:hover {
+            border-color: var(--chainsaw-orange);
+            transform: scale(1.05);
+            box-shadow: 0 0 12px var(--chainsaw-orange);
+        }
+
+        /* BARRA LATERAL (SIDEBAR) */
+        aside {
+            background-color: var(--accent-gray);
+            padding: 30px;
+            border-radius: 4px;
+            height: fit-content;
+            border: 1px solid #222;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        aside h3 {
+            font-family: 'Permanent Marker', cursive;
+            color: var(--chainsaw-orange);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--blood-red);
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-widget {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-widget p {
+            color: #bbb;
+            font-size: 1rem;
+        }
+
+        /* Lista de Personagens na Sidebar */
+        .character-list {
+            list-style: none;
+        }
+
+        .character-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #25252b;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .character-list span {
+            color: var(--neon-orange);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* RODAPÉ / FOOTER */
+        footer {
+            background-color: #050507;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 3px solid var(--chainsaw-orange);
+            color: #888;
+            font-size: 1rem;
+        }
+
+        footer span {
+            color: var(--chainsaw-orange);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO DO BLOG -->
+    <header>
+        <h1>Chainsaw Blog</h1>
+        <p>A insanidade e o sangue dos caçadores de demônios</p>
+        
+        <!-- LINKS DE NAVEGAÇÃO -->
+        <nav>
+            <a href="#historia">A História</a>
+            <a href="#demonios">Os Demônios</a>
+            <a href="#galeria">Galeria Visual</a>
+        </nav>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL (POSTS + SIDEBAR) -->
+    <div class="container">
+        
+        <!-- ÁREA DOS POSTS -->
+        <main class="main-content">
+            
+            <!-- POST 1: A HISTÓRIA -->
+            <article id="historia">
+                <div class="post-meta">Análise de Enredo • Por: Aluno Nota 10</div>
+                <h2>A Trajetória de Denji: Da Miséria ao Topo</h2>
+                
+                <div class="post-img">
+                    <img src="https://onpoplife.com.br/wp-content/uploads/2025/10/chainsaw-man-critica-capa.jpg" alt="Denji e Pochita Chainsaw Man">
+                </div>
+
+                <p><strong>Chainsaw Man</strong>, criado por Tatsuki Fujimoto, quebrou os clichês tradicionais dos mangás de ação. A história acompanha Denji, um garoto que herdou uma dívida impagável da Yakuza e sobrevive vendendo órgãos e caçando demônios de baixo nível com seu cachorro mecânico, Pochita.</p>
+                <p>Após ser traído e fatiado pelos mafiosos, Pochita se funde ao coração de Denji para salvá-lo, transformando-o no lendário <em>Homem-Motosserra</em>. O grande diferencial da obra são as motivações de Denji: enquanto heróis comuns querem salvar o mundo ou virar reis, ele só quer comer geleia no pão, ter um teto e conseguir uma namorada.</p>
+                <p>Rapidamente, ele é capturado pela misteriosa Makima e forçado a entrar para a <strong>Divisão Especial 4 da Segurança Pública</strong>, uma unidade de elite feita para lidar com ameaças absurdas.</p>
+            </article>
+
+            <!-- POST 2: SISTEMA DE PODER -->
+            <article id="demonios">
+                <div class="post-meta">Guia do Universo • Lore Avançada</div>
+                <h2>Como Funcionam os Demônios e os Pactos?</h2>
+                
+                <div class="post-img">
+                    <img src="https://animehunch.com/wp-content/uploads/2022/05/Chainsawman.jpg" alt="Demônios e Caçadores">
+                </div>
+
+                <p>No mundo da obra, os demônios são forças sobrenaturais que se alimentam dos medos da humanidade. O conceito é simples, mas genial: <strong>quanto mais medo um objeto ou ideia gera, mais forte o demônio será.</strong></p>
+                
+                <p>Existem três formas principais que essas entidades assumem no mundo:</p>
+                <ul>
+                    <li><strong>Demônios Puros:</strong> Criaturas nascidas diretamente no inferno ou na Terra baseadas em um medo (ex: Demônio das Armas, Demônio do Sangue).</li>
+                    <li><strong>Possessos (Fiends):</strong> Demônios que assumiram o corpo de um humano morto como último recurso para sobreviver. Eles perdem parte do poder original, mas ganham consciência humana (ex: Power).</li>
+                    <li><strong>Híbridos:</strong> Casos raríssimos onde um humano e um demônio se fundem voluntariamente através de um contrato (ex: Denji/Chainsaw Man, Katana Man).</li>
+                </ul>
+                <p>Para combatê-los, os humanos normais precisam fazer pactos perigosos com outros demônios, oferecendo partes do corpo, anos de expectativa de vida ou até mesmo os próprios sentidos em troca de poder de fogo.</p>
+            </article>
+
+            <!-- SEÇÃO DE GALERIA SOLICITADA -->
+            <h3 class="galeria-titulo" id="galeria">Galeria de Imagens do Anime</h3>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <img src="https://cdn.rafled.com/anime-icons/images/f156baf66ce2346bc6cae9f97b770a3dd00e525da02b0601ddb0781789202742.jpg" alt="Makima">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://ovicio.com.br/wp-content/uploads/2022/11/20221108-powerangel-1024x576.png" alt="Power">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://niisansproducoesgeek.com/wp-content/uploads/2022/12/Aki-Hayakawa.webp" alt="Aki Hayakawa">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2022/10/pochita-chainsaw-man.jpg" alt="Pochita fofo">
+                </div>
+            </div>
+
+        </main>
+
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside>
+            <div class="sidebar-widget">
+                <h3>O Trabalho Escolar</h3>
+                <p><strong>Tema:</strong> Análise de Mídias e Narrativas Visuais na Cultura Pop.</p>
+                <p style="margin-top: 10px;"><strong>Objetivo:</strong> Estudar o impacto cultural, estético e o subtexto social presente no mangá de Tatsuki Fujimoto.</p>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Ficha dos Personagens</h3>
+                <ul class="character-list">
+                    <li>
+                        <strong>Denji / Chainsaw</strong>
+                        <span>Híbrido Motosserra • Protagonista caótico</span>
+                    </li>
+                    <li>
+                        <strong>Makima</strong>
+                        <span>Líder da Divisão 4 • Manipuladora e misteriosa</span>
+                    </li>
+                    <li>
+                        <strong>Power</strong>
+                        <span>Possessa do Sangue • Egocêntrica e hilária</span>
+                    </li>
+                    <li>
+                        <strong>Aki Hayakawa</strong>
+                        <span>Caçador Humano • Sério e vingativo</span>
+                    </li>
+                    <li>
+                        <strong>Pochita</strong>
+                        <span>Demônio Motosserra • O melhor amigo do homem</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Curiosidade</h3>
+                <p>Você sabia? O autor Tatsuki Fujimoto é um cinéfilo doente. A abertura inteira do anime de Chainsaw Man é cheia de referências a filmes famosos como <em>Pulp Fiction</em>, <em>O Massacre da Serra Elétrica</em> e <em>No Coração da Trevas</em>!</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>&copy; 2026 - Trabalho Escolar de Análise Pop. Desenvolvido no estilo <span>🔥 Laranja Neon</span>.</p>
+    </footer>
+
+</body>
+</html>
